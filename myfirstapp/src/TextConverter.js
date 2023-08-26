@@ -32,7 +32,7 @@ export default function TextConverter(props) {
             <div className="container">
                 <h1>Summary</h1>
                 <p>{countWords(text)} Words,{text.length} Characters</p>
-                <p>{0.008*countWords(text)} Minutes to Read Above Paragraph</p>
+                <p>{0.008*countWords(text)} Hello Minutes to Read Above Paragraph</p>
                 <h3>Preview</h3>
                 <p>{text}</p>
             </div>
