@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 function Students() {
     const [stu, setStu] = useState([]);
     // const {ild} = useParams();
@@ -29,7 +29,10 @@ function Students() {
                                 <li class="list-group-item " id="list">{student.age}</li>
                             </ul>
                             <div class="card-body">
-                                <Link to={"/StudentDetail/"+student.id}className="btn btn-primary">Student Detail</Link>
+                                {/*
+                                    pass as in to into index path
+                                 */}
+                                <Link to={"/StudentDetail/" + student.id} className="btn btn-primary">Student Detail</Link>
                                 <button className="btn btn-primary mt-1" onClick={() => {
                                     fetch("https://64e217afab0037358818ac4d.mockapi.io/Students" + "/" + student.id, { method: "Delete" });
                                     setStu([
@@ -41,12 +44,17 @@ function Students() {
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </>
         );
     });
     return (
         <>
+            <div className="my-2 m-4">
+                <Link to="/StudentAdd" className="btn btn-primary mx-2">ADD New Student</Link>
+            </div>
             <div className="container">
                 <div className="row">{formattedStudents}</div>
             </div>
@@ -59,18 +67,17 @@ function StudentDetail() {
     const [student, setStudent] = useState({});
     useEffect(() => {
         fetch("https://64e217afab0037358818ac4d.mockapi.io/Students/" + id)
-            .then((res) =>  res.json())
+            .then((res) => res.json())
             .then((res) => { setStudent(res) });
-            
+
     }, []);
-    console.log(student);
     return (
         <>
             <div className="row">
-                <div className="col-3">
+                <div className="col-3 mx-5 ">
                     <img src={student.avatar} className="img-fluid" />
                 </div>
-                <div className="col">
+                <div className="col mx-5">
                     {student.id}
                     <br />
                     {student.name}
@@ -81,8 +88,12 @@ function StudentDetail() {
                 </div>
             </div>
             <div>
-                <Link to="/Student" className="btn btn-primary ">Back</Link>
+                <Link to="/Student" className="btn btn-primary my-4 mx-5">Back</Link>
             </div>
+            <div>
+                <Link to={"/StudentAdd/"+student.id} className="btn btn-primary mx-5">Edit</Link>
+            </div>
+
         </>
     );
 }
