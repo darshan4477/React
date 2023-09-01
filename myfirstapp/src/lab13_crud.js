@@ -33,14 +33,6 @@ function Students() {
                                     pass as in to into index path
                                  */}
                                 <Link to={"/StudentDetail/" + student.id} className="btn btn-primary">Student Detail</Link>
-                                <button className="btn btn-primary mt-1" onClick={() => {
-                                    fetch("https://64e217afab0037358818ac4d.mockapi.io/Students" + "/" + student.id, { method: "Delete" });
-                                    setStu([
-                                        ...stu.filter((e) => {
-                                            return (e.id !== student.id);
-                                        })
-                                    ])
-                                }}>Delete</button>
                             </div>
                         </div>
                     </div>
